@@ -3,8 +3,8 @@
   function loadScript (url, cb) {
     var script = document.createElement('script');
     document.body.appendChild(script);
-    el.onload = cb;
-    el.src = url;
+    script.onload = cb;
+    script.src = url;
   }
 
   function factListItems () {
