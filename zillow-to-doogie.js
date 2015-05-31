@@ -112,7 +112,7 @@
         field: field.field,
         content: content
       };
-    }).filter(contents, function (content) {
+    }).filter(function (content) {
       return content !== null;
     });
   }
