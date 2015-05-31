@@ -1,5 +1,12 @@
 (function () {
 
+  function loadScript (url, cb) {
+    var script = document.createElement('script');
+    document.body.appendChild(script);
+    el.onload = cb;
+    el.src = url;
+  }
+
   function factListItems () {
     return $('.fact-group-container.zsg-content-component h4')
       .filter(function () {
@@ -93,23 +100,27 @@
     }
   ];
 
-  var contents = $.map(fields, function (index, field) {
-    var content = (typeof field.selector === 'function' ? field.selector() : $(field.selector).text()).trim();
-    if (!content) return null;
+  loadScript('https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js', function () {
 
-    if (field.alter) {
-      content = field.alter(content);
-    }
-    return {
-      field: field.field,
-      content: content
-    };
+    var contents = $.map(fields, function (index, field) {
+      var content = (typeof field.selector === 'function' ? field.selector() : $(field.selector).text()).trim();
+      if (!content) return null;
+
+      if (field.alter) {
+        content = field.alter(content);
+      }
+      return {
+        field: field.field,
+        content: content
+      };
+    });
+
+    contents = $.filter(contents, function (index, content) {
+      return content !== null;
+    });
+
+    console.log(contents);
+
   });
-
-  contents = $.filter(contents, function (index, content) {
-    return content !== null;
-  });
-
-  console.log(contents);
 
 }());
