@@ -101,7 +101,7 @@
   ];
 
   function getFieldContents () {
-    var contents = $.map(fields, function (index, field) {
+    return $.map(fields, function (field) {
       var content = (typeof field.selector === 'function' ? field.selector() : $(field.selector).text()).trim();
       if (!content) return null;
 
@@ -112,15 +112,13 @@
         field: field.field,
         content: content
       };
-    });
-
-    return $.filter(contents, function (index, content) {
+    }).filter(contents, function (content) {
       return content !== null;
     });
   }
 
   loadScript('https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js', function () {
-    console.log(getFieldContents);
+    console.log(getFieldContents());
   });
 
   window.getFieldContents = getFieldContents;
