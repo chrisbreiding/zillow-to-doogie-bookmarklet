@@ -100,8 +100,7 @@
     }
   ];
 
-  loadScript('https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js', function () {
-
+  function getFieldContents () {
     var contents = $.map(fields, function (index, field) {
       var content = (typeof field.selector === 'function' ? field.selector() : $(field.selector).text()).trim();
       if (!content) return null;
@@ -115,12 +114,14 @@
       };
     });
 
-    contents = $.filter(contents, function (index, content) {
+    return $.filter(contents, function (index, content) {
       return content !== null;
     });
+  }
 
-    console.log(contents);
-
+  loadScript('https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js', function () {
+    console.log(getFieldContents);
   });
 
+  window.getFieldContents = getFieldContents;
 }());
