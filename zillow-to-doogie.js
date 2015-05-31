@@ -18,7 +18,7 @@
       .filter(function () {
         return $(this).text().trim().toLowerCase() === 'facts';
       })
-      .next('ul')
+      .parent()
       .find('li');
   }
 
