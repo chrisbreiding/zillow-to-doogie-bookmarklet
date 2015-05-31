@@ -16,16 +16,22 @@
       .find('li');
   }
 
+  removeDollarSign (price) {
+    return price.replace('$', '');
+  }
+
   var fields = [
     {
       field: '__name',
       selector: '.zsg-content-header.addr h1'
     },{
       field: 'Cost',
-      selector: '.main-row.home-summary-row'
+      selector: '.main-row.home-summary-row',
+      alter: function (content) { return removeDollarSign(content); }
     },{
       field: 'Zestimate',
-      selector: '.home-summary-row .zsg-tooltip-launch + span'
+      selector: '.home-summary-row .zsg-tooltip-launch + span',
+      alter: function (content) { return removeDollarSign(content); }
     },{
       field: 'Rooms',
       selector: function () {
@@ -51,7 +57,7 @@
       }
     },{
       field: 'Taxes',
-      selector: '#hdp-tax-history tr:first .numeric:first',
+      selector: '#hdp-tax-history tbody tr:first .numeric:first',
       alter: function (content) {
         var getRidOf = $('#hdp-tax-history tr:first .numeric:first .delta-value').text();
         return content.replace(getRidOf, '');
