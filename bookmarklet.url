@@ -1,1 +1,1 @@
-javascript:(function(){var script=document.createElement('script');script.setAttribute('src','http://chrisbreiding.github.io/zillow-to-doogie-bookmarklet/zillow-to-doogie.js');document.body.appendChild(script);}());
+javascript:(function(){window.__firebaseToken='';var script=document.createElement('script');script.setAttribute('src','http://chrisbreiding.github.io/zillow-to-doogie-bookmarklet/zillow-to-doogie.js');document.body.appendChild(script);}());
